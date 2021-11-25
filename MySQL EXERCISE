@@ -1,4 +1,4 @@
-/* Exercise 1 */
+********************EXERCISE 1********************************
 
 use cdacmumbaipgdacsep2021;
 
@@ -152,4 +152,68 @@ SELECT * FROM S  WHERE CITY = 'Paris' or CITY = 'Athens';
  SELECT CITY FROM S;
  /*[15]*/
  SELECT WEIGHT AS GRAM, WEIGHT*1000 AS MILLIGRAM, WEIGHT/1000 AS KILOGRAM FROM P;
+ 
+ ********************EXERCISE 2********************************
+
+1) Display the Supplier table in the descending order of CITY.
+=  select * from s order by city desc;
+
+2) Display the Part Table in the ascending order of CITY and within 
+  the city in the ascending order of Part names.
+= select * from p order by city,pname;
+
+3) Display all the Suppliers with a status between 10 and 20.
+= select * from s where status between 10 and 20;
+
+4) Display all the Parts and their Weight, which are not in the range of 10 and 15.
+= select pname,weight from p where weight not between 10 and 15;
+
+5) Display all the Part names starting with the letter ‘S’.
+= select pname from p where pname like 's%';
+
+6) Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+= select * from s where city like 'l%';
+
+7) Display all the Projects, with the third letter in JNAME as ‘n’.
+= select * from j where jname like '__n%';
+
+
+********************EXERCISE 3********************************
+
+1) Display all the Supplier names with the initial letter capital.
+= Not possible in MySQL/ but possible 
+
+2) Display all the Supplier names in upper case.
+= select upper(sname) from s;
+
+3) Display all the Supplier names in lower case.
+= select lower(sname) from s;
+
+4) Display all the Supplier names padded to 25 characters, with spaces on the left.
+= select lpad(sname,20,' ') from s;
+
+5) Display all the Supplier names (with ‘la’ replaced by ‘ro’). HINT: REPLACE.
+= select replace(sname,'la','ro') from s;
+
+6) Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced
+   with ‘o’.
+= select replace(replace(sname,'l','r'),'r','a') from s;
+
+7) Display the Supplier names and the lengths of the names.
+=  select sname, length(sname) from from s;
+
+8) Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+= select sname,case when strcmp(soundex('bloke'),soundex(sname))=0 then 'Match'
+  else 'Not match' end from s;
+
+9) Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+=  select sname , 
+   case when Status = 10 then 'Ten'
+   when status = 20 then 'Twenty'
+   when status = 30 then 'Thirty'
+   end as status from s;
+
+
+10) Display the current day (e.g. Thursday).
+ =  select dayname(curdate());
  
